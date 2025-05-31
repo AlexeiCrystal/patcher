@@ -1,58 +1,46 @@
 name: Patch Request
-description: Request a patch for application functionality
+description: Request a functional patch for the application
 labels: ["patch request"]
 body:
-  - type: markdown
-    attributes:
-      value: |
-        **Please provide details for the requested patch**
   - type: textarea
     attributes:
       label: Patch Description
-      description: What does this patch do and why is it needed?
+      description: What functionality does this patch provide and why is it needed?
       placeholder: |
-        • Describe the problem being solved
-        • Explain the expected behavior
-        • Provide specific use cases
+        • Problem being solved
+        • Expected behavior after patch
+        • Use case examples
     validations:
       required: true
+
   - type: dropdown
     attributes:
       label: Device Compatibility
-      description: Which devices will this patch support?
+      description: Which devices should support this patch?
       options:
-        - All devices
+        - All Android devices
         - Specific manufacturers only
-        - Custom device list
+        - Selected device models only
     validations:
       required: true
+
   - type: textarea
     attributes:
-      label: Manufacturer/Device Details
+      label: Implementation Suggestions
       description: |
-        Required if selecting "Specific manufacturers only" or "Custom device list"
-        • List manufacturers (Samsung, Xiaomi, etc.)
-        • Device models (optional)
-        • Android versions affected
-      placeholder: Samsung, Pixel 6+; Android 12-14
-      visible: false
-  - type: textarea
-    attributes:
-      label: Possible Implementation Methods
-      description: |
-        Optional suggestions for implementation (ADB commands, system settings, etc.)
-        Example formats:
-        • ADB: `adb shell settings put system example_setting 1`
-        • System setting: Settings.Secure.EXAMPLE_FLAG
-        • File modification: /system/etc/config.file
+        How could this be implemented? (Optional technical suggestions)
+        • ADB commands
+        • System settings modifications
+        • Configuration changes
       placeholder: |
-        Proposed solutions:
-        1. ADB command: `adb shell ...`
-        2. Configuration change in ...
-        3. Permission adjustment for ...
+        Example implementations:
+        - ADB: `adb shell settings put global setting_name value`
+        - Modify: /system/build.prop
+        - Toggle: Settings.Secure.FLAG_NAME
+
   - type: checkboxes
     attributes:
-      label: Additional Information
+      label: Requirements
       options:
-        - label: This patch requires root access?
+        - label: This patch requires root access
           required: false
