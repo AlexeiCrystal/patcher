@@ -1,0 +1,58 @@
+name: Patch Request
+description: Request a patch for application functionality
+labels: ["patch request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Please provide details for the requested patch**
+  - type: textarea
+    attributes:
+      label: Patch Description
+      description: What does this patch do and why is it needed?
+      placeholder: |
+        • Describe the problem being solved
+        • Explain the expected behavior
+        • Provide specific use cases
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Device Compatibility
+      description: Which devices will this patch support?
+      options:
+        - All devices
+        - Specific manufacturers only
+        - Custom device list
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Manufacturer/Device Details
+      description: |
+        Required if selecting "Specific manufacturers only" or "Custom device list"
+        • List manufacturers (Samsung, Xiaomi, etc.)
+        • Device models (optional)
+        • Android versions affected
+      placeholder: Samsung, Pixel 6+; Android 12-14
+      visible: false
+  - type: textarea
+    attributes:
+      label: Possible Implementation Methods
+      description: |
+        Optional suggestions for implementation (ADB commands, system settings, etc.)
+        Example formats:
+        • ADB: `adb shell settings put system example_setting 1`
+        • System setting: Settings.Secure.EXAMPLE_FLAG
+        • File modification: /system/etc/config.file
+      placeholder: |
+        Proposed solutions:
+        1. ADB command: `adb shell ...`
+        2. Configuration change in ...
+        3. Permission adjustment for ...
+  - type: checkboxes
+    attributes:
+      label: Additional Information
+      options:
+        - label: This patch requires root access?
+          required: false
